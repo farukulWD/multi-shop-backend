@@ -1,6 +1,7 @@
 import { Model } from "mongoose";
 
 export interface IUser {
+  _id?: string;
   username: string;
   password: string;
   shops: string[];
