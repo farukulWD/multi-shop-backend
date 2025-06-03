@@ -16,11 +16,12 @@ const app: Application = express();
 // CORS
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://multi-shop-backend.vercel.app/",
-  "https://multi-shop-one.vercel.app/",
+  "https://multi-shop-backend.vercel.app",
+  "https://multi-shop-one.vercel.app",
   `http://localhost:${config.PORT}`,
 ];
 const localhostSubdomainRegex = /^http:\/\/.*\.localhost:5173$/;
+const vercelSubdomainRegex = /^https:\/\/.*\.vercel\.app$/;
 
 app.use(
   cors({
@@ -30,7 +31,8 @@ app.use(
       if (
         !origin ||
         allowedOrigins.includes(origin) ||
-        localhostSubdomainRegex.test(origin)
+        localhostSubdomainRegex.test(origin) ||
+        vercelSubdomainRegex.test(origin) 
       ) {
         callback(null, true);
       } else {

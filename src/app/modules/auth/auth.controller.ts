@@ -1,3 +1,4 @@
+import config from "../../config";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { AuthService } from "./auth.service";
@@ -8,10 +9,13 @@ const singIn = catchAsync(async (req, res) => {
 
   res.cookie("token", result.token, {
     httpOnly: true,
-    secure: true,
-    domain: ".localhost",
+    secure: config.NODE_ENV === "production",
+    sameSite: config.NODE_ENV === "production" ? "none" : "lax",
+    domain:
+      config.NODE_ENV === "production"
+        ? ".multi-shop-backend.vercel.app"
+        : ".localhost",
     maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
-    sameSite: "none",
   });
 
   sendResponse(res, {
