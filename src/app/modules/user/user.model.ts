@@ -3,10 +3,14 @@ import { IUser, IUserModel } from "./user.interface";
 import bcrypt from "bcrypt";
 import config from "../../config";
 
+const ShopSchema = new Schema({
+  name: { type: String, required: true, unique: true },
+});
+
 const userSchema = new Schema<IUser, IUserModel>({
   username: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  shops: [{ type: String, required: true }],
+  shops: [ShopSchema],
 });
 
 // Pre-save hook to hash password before saving

@@ -12,12 +12,11 @@ const userValidationSchema = z.object({
       .string()
       .min(6, { message: "Password must be at least 6 characters long" }),
     shops: z.array(
-      z.string({
-        required_error: "Shop name is required",
+      z.object({
+        name: z.string({ message: "Shop name is required" }).min(2).max(100),
       })
     ),
   }),
 });
-
 
 export { userValidationSchema };

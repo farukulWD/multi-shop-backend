@@ -4,7 +4,7 @@ import httpStatus from "http-status";
 import { User } from "./user.model";
 
 const createUser = async (userData: IUser) => {
-  console.log({ userData });
+  console.log(JSON.stringify(userData));
   if (!userData) {
     throw new AppError(httpStatus.BAD_REQUEST, "User data is required");
   }
@@ -19,7 +19,9 @@ const createUser = async (userData: IUser) => {
     );
   }
 
-  const existing = await User.findOne({ shops: { $in: userData.shops } });
+  const existing = await User.findOne({
+    shops: { $in: userData.shops.map((shop) => shop.name) },
+  });
   if (existing) {
     throw new AppError(
       httpStatus.BAD_REQUEST,
