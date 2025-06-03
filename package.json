@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start": "node dist/src/index.js",
-    "build": "tsc",
-    "ts.check": "tsc --project tsconfig.json"
+    "build": "tsc"
   },
   "engines": {
     "node": ">=20.0.0"
