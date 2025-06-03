@@ -4,7 +4,9 @@ import { logger } from "../shared/logger";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(config.DB_URL as string);
+    await mongoose.connect(config.DB_URL as string, {
+      serverSelectionTimeoutMS: 10000, 
+    });
 
     logger.info("MongoDB connected successfully");
   } catch (error) {
