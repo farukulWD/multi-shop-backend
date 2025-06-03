@@ -15,8 +15,9 @@ const userSchema = new Schema<IUser, IUserModel>({
 
 // Pre-save hook to hash password before saving
 userSchema.pre("save", async function (next) {
-  const user = this as IUser;
 
+  const user = this as IUser;
+  console.log(user)
   user.password = await bcrypt.hash(
     user.password,
     Number(config.BYCRIPT_SALT_ROUNDS)

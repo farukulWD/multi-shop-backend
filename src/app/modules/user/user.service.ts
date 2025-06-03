@@ -4,7 +4,7 @@ import httpStatus from "http-status";
 import { User } from "./user.model";
 
 const createUser = async (userData: IUser) => {
-  console.log(JSON.stringify(userData));
+
   if (!userData) {
     throw new AppError(httpStatus.BAD_REQUEST, "User data is required");
   }
@@ -20,7 +20,7 @@ const createUser = async (userData: IUser) => {
   }
 
   const existing = await User.findOne({
-    shops: { $in: userData.shops.map((shop) => shop.name) },
+    shops: { $in: userData.shops.map((shop) => shop) },
   });
   if (existing) {
     throw new AppError(
@@ -33,7 +33,7 @@ const createUser = async (userData: IUser) => {
   if (existingUser) {
     throw new AppError(httpStatus.CONFLICT, "Username already exists");
   }
-
+  console.log(JSON.stringify(userData));
   const newUser = await User.create(userData);
   if (!newUser) {
     throw new AppError(
