@@ -8,9 +8,10 @@ const singIn = catchAsync(async (req, res) => {
 
   res.cookie("token", result.token, {
     httpOnly: true,
-    secure: false,
-    domain: ".localhost", // for subdomain sharing
+    secure: true,
+    domain: ".localhost",
     maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
+    sameSite: "none",
   });
 
   sendResponse(res, {
@@ -23,7 +24,7 @@ const singIn = catchAsync(async (req, res) => {
 
 const getProfile = catchAsync(async (req, res) => {
   const username = req.user.username;
-  console.log(username);
+
   const user = await AuthService.getProfile(username);
 
   sendResponse(res, {

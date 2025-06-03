@@ -20,12 +20,18 @@ const allowedOrigins = [
   "https://multi-shop-one.vercel.app/",
   `http://localhost:${config.PORT}`,
 ];
+const localhostSubdomainRegex = /^http:\/\/.*\.localhost:5173$/;
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      console.log({ origin });
-      if (!origin || allowedOrigins.includes(origin) || origin === "null") {
+      console.log({ localhostSubdomainRegex, origin });
+
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        localhostSubdomainRegex.test(origin)
+      ) {
         callback(null, true);
       } else {
         callback(new AppError(httpStatus.BAD_GATEWAY, "Not allowed by CORS"));
