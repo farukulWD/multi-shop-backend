@@ -11,8 +11,7 @@ const singIn = catchAsync(async (req, res) => {
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    domain: ".vercel.app",
-    // domain: "localhost",
+    domain: ".multi-shop-one.vercel.app",
     maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
   });
 
