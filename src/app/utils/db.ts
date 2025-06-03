@@ -5,7 +5,7 @@ import { logger } from "../shared/logger";
 const connectDB=async()=>{
     try {
 
-        await mongoose.connect(config.DB_URL)
+        await mongoose.connect(config.DB_URL as string)
        logger.info("MongoDB connected successfully");
     } catch (error) {
         logger.error("MongoDB connection failed", error);
