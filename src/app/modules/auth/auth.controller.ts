@@ -9,12 +9,13 @@ const singIn = catchAsync(async (req, res) => {
 
   res.cookie("token", result.token, {
     httpOnly: true,
-    secure: config.NODE_ENV === "production",
-    sameSite: config.NODE_ENV === "production" ? "none" : "lax",
+    secure: true,
+    sameSite: "none",
     domain:
       config.NODE_ENV === "production"
         ? ".multi-shop-backend.vercel.app"
-        : ".localhost",
+        : "localhost",
+    // domain: "localhost",
     maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
   });
 
