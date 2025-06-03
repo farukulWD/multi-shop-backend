@@ -27,7 +27,7 @@ const createUser = async (userData: IUser) => {
     );
   }
 
-  const existingUser = await User.userFindByUserName(userData.username);
+  const existingUser = await User.findOne({ username: userData.username });
   if (existingUser) {
     throw new AppError(httpStatus.CONFLICT, "Username already exists");
   }

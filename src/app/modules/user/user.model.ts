@@ -38,10 +38,5 @@ userSchema.statics.hashPassword = async function (password: string) {
 };
 
 // static method to find user by username
-userSchema.statics.userFindByUserName = async function (
-  username: string
-): Promise<IUser | null> {
-  return await this.findOne({ username });
-};
 
 export const User = mongoose.model<IUser, IUserModel>("User", userSchema);

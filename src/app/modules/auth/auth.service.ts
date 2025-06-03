@@ -8,7 +8,7 @@ import jwt from "jsonwebtoken";
 const signin = async (singInData: ISignInData) => {
   const { username, password, rememberMe } = singInData;
 
-  const user = await User.userFindByUserName(username);
+  const user = await User.findOne({ username });
   if (!user) throw new AppError(httpStatus.NOT_FOUND, "User not found");
 
   const isMatch = await User.isPasswordMatched(password, user.password);

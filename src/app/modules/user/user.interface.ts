@@ -8,7 +8,7 @@ export interface IUser {
 }
 
 export interface IUserModel extends Model<IUser> {
-  userFindByUserName(username: string): Promise<IUser | null>;
+
 
   isPasswordMatched(
     plainTextPassword: string,
