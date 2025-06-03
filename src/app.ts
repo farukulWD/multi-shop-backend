@@ -16,6 +16,8 @@ const app: Application = express();
 // CORS
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://multi-shop-backend.vercel.app/",
+  "https://multi-shop-one.vercel.app/",
   `http://localhost:${config.PORT}`,
 ];
 
