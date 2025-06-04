@@ -20,7 +20,7 @@ A Node.js + Express + MongoDB-based backend that supports multi-shop user authen
 ---
 
 ## 📦 Folder Structure
-
+```
 src/
 ├── app/
 │ ├── models/
@@ -33,7 +33,7 @@ src/
 ├── .env.example
 ├── app.ts
 └── index.ts
-
+```
 
 ---
 
