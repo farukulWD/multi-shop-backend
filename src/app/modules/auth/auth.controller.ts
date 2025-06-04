@@ -7,14 +7,21 @@ const singIn = catchAsync(async (req, res) => {
   const singInData = req.body;
   const result = await AuthService.signin(singInData);
 
-  res.cookie("token", result.token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "none",
-    domain: ".multi-shop-one.vercel.app",
-    maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
-  });
-
+  if (config.NODE_ENV === "development") {
+    res.cookie("token", result.token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
+    });
+  } else {
+    res.cookie("token", result.token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: singInData.rememberMe ? 7 * 24 * 60 * 60 * 1000 : 30 * 60 * 1000,
+    });
+  }
   sendResponse(res, {
     statusCode: 200,
     success: true,
