@@ -22,14 +22,14 @@ A Node.js + Express + MongoDB-based backend that supports multi-shop user authen
 ## 📦 Folder Structure
 
 src/
-├── app/ 
-    ├── models
-    ├── routes/
-    ├── middlewares/
-    ├── utils/
-    ├── config/
-    ├── errors/
-    ├── shared/   
+├── app/
+│ ├── models/
+│ ├── routes/
+│ ├── middlewares/
+│ ├── utils/
+│ ├── config/
+│ ├── errors/
+│ └── shared/
 ├── .env.example
 ├── app.ts
 └── index.ts
