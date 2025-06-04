@@ -67,13 +67,6 @@ npm run dev
 
 
 
-| Method | Endpoint               | Description                              |
-| ------ | ---------------------- | ---------------------------------------- |
-| POST   | `/api/v1/user/sign-up` | Register new user with unique shop names |
-| POST   | `/api/v1/auth/sign-in` | Login user and issue session token       |
-| GET    | `/api/v1/auth/profile` | Fetch authenticated user info            |
-| POST   | `/api/v1/auth/logout`  | Logout and clear cookies                 |
-
 
 
 ✅ Tech Stack
@@ -89,3 +82,84 @@ CORS (Cross-Subdomain)
 
 ```
 ----
+
+
+## 🔐 Authentication Endpoints
+
+### 📌 Sign Up
+
+**Endpoint:**  
+`POST /api/v1/user/sign-up`
+
+**URL:**  
+https://multi-shop-backend-production-7894.up.railway.app/api/v1/user/sign-up
+
+**Request Body (JSON):**
+```json
+{
+  "username": "john2",
+  "password": "12345678",
+  "shops": [
+    { "name": "shop6" },
+    { "name": "shop5" },
+    { "name": "shop7" }
+  ]
+}
+```
+
+---
+
+### 🔑 Sign In
+
+**Endpoint:**  
+`POST /api/v1/auth/sign-in`
+
+**URL:**  
+https://multi-shop-backend-production-7894.up.railway.app/api/v1/auth/sign-in
+
+**Request Body (JSON):**
+```json
+{
+  "username": "userName",
+  "password": "12345678",
+  "rememberMe": true
+}
+```
+
+---
+
+### 👤 Get Profile
+
+**Endpoint:**  
+`GET /api/v1/auth/profile`
+
+**URL:**  
+https://multi-shop-backend-production-7894.up.railway.app/api/v1/auth/profile
+
+> ⚠️ Note: Although it's a GET request, this API currently expects a request body.
+
+
+```
+
+---
+
+### 🚪 Logout
+
+**Endpoint:**  
+`POST /api/v1/auth/logout`
+
+**URL:**  
+https://multi-shop-backend-production-7894.up.railway.app/api/v1/auth/logout
+
+
+```
+
+---
+
+## 🧪 Testing
+
+You can use tools like **Postman**, **Insomnia**, or `curl` to test the API endpoints.
+
+---
+
+
